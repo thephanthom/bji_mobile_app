@@ -1,26 +1,25 @@
-import 'package:bji/pages/details/question_list.dart';
-import 'package:bji/utils/topic.dart';
+import 'package:bli/pages/detail/question_list.dart';
+import 'package:bli/utils/topic.dart';
 import 'package:flutter/material.dart';
 
-class DetailesPage extends StatelessWidget {
-  const DetailesPage({Key? key}) : super(key: key);
+class DetailPage extends StatelessWidget {
+  const DetailPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Topic topic = ModalRoute.of(context)?.settings.arguments as Topic;
+
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: Colors.blueGrey[50],
       appBar: AppBar(
-        title: const Text("salom"),
-        centerTitle: true,
-        backgroundColor: Colors.indigo,
+        backgroundColor: Colors.blue,
       ),
       body: Column(
         children: [
           AspectRatio(
             aspectRatio: 5 / 3,
             child: Stack(
-              alignment: AlignmentDirectional.center,
+              alignment: AlignmentDirectional.bottomCenter,
               fit: StackFit.expand,
               children: [
                 Hero(
@@ -31,21 +30,19 @@ class DetailesPage extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: 60.0,
+                  top: 60,
                   child: Text(
                     topic.title,
                     style: TextStyle(
-                        fontSize: 48.0,
-                        color: Colors.indigoAccent[700],
+                        fontSize: 48,
+                        color: Colors.white,
                         fontWeight: FontWeight.w700),
                   ),
                 ),
               ],
             ),
           ),
-          QuestionList(
-            topic: topic,
-          ),
+          QustionList(topic: topic),
         ],
       ),
     );

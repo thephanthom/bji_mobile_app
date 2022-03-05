@@ -1,12 +1,13 @@
-// ignore_for_file: must_be_immutable
-
-import 'package:bji/utils/topic.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:bli/utils/topic.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
-class QuestionList extends StatelessWidget {
-  QuestionList({Key? key, required this.topic}) : super(key: key);
+class QustionList extends StatelessWidget {
+  //const QustionList({Key? key}) : super(key: key);
+
+  QustionList({required this.topic});
   late Topic topic;
+
   @override
   Widget build(BuildContext context) {
     return AnimationLimiter(
@@ -16,7 +17,7 @@ class QuestionList extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return AnimationConfiguration.staggeredList(
               position: index,
-              duration: const Duration(milliseconds: 800),
+              duration: const Duration(milliseconds: 500),
               child: SlideAnimation(
                 verticalOffset: 50.0,
                 child: FadeInAnimation(
@@ -30,18 +31,18 @@ class QuestionList extends StatelessWidget {
                       child: Card(
                         child: ListTile(
                           leading: Icon(
-                            Icons.question_answer_rounded,
+                            Icons.question_answer,
                             color: Colors.indigo[300],
                           ),
                           title: Text(
-                            "${index + 1} - Savol",
+                            '${index + 1}- Savol',
                             style: TextStyle(
-                                fontFamily: "Monospace",
-                                fontSize: 20.0,
+                                fontSize: 22.0,
+                                fontFamily: 'Monospace',
                                 fontWeight: FontWeight.bold,
                                 color: Colors.blueGrey[700]),
                           ),
-                          trailing: const Icon(Icons.arrow_forward_ios),
+                          trailing: Icon(Icons.arrow_forward_ios),
                         ),
                       ),
                     ),

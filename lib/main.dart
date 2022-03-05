@@ -1,10 +1,12 @@
-import 'package:bji/utils/bookmark_model.dart';
-import 'package:flutter/material.dart';
+import 'package:bli/pages/answer/answer.dart';
+import 'package:bli/pages/detail/detail.dart';
+import 'package:bli/pages/home/home.dart';
+import 'package:bli/utils/bookmark_madel.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'pages/details/details.dart';
-import 'pages/home/home.dart';
-import 'pages/questions/questionpage.dart';
+
+import 'pages/question_page/question.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
@@ -19,16 +21,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
         '/': (context) => const Home(),
-        '/details': (context) => const DetailesPage(),
+        '/detail': (context) => const DetailPage(),
+        '/question': (context) => const QuestionPage(),
+        '/answer': (context) => const AnswerPage(),
       },
-      theme: ThemeData(primarySwatch: Colors.indigo),
+      theme: ThemeData(
+        primaryColor: const Color(0xff000000),
+        primarySwatch: Colors.indigo,
+      ),
       onGenerateRoute: (settings) {
         switch (settings.name) {
-          case '/question':
+          case '/second':
             return PageTransition(
               child: const QuestionPage(),
               type: PageTransitionType.rightToLeft,

@@ -1,48 +1,52 @@
-import 'package:bji/pages/home/drawer.dart';
-import 'package:bji/utils/data.dart';
+import 'dart:math';
+
+import 'package:bli/pages/detail/data.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+import 'drawer.dart';
 import 'mycard.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
   Widget build(BuildContext context) {
+    String motivation() {
+      List<String> mativatsiya = [
+        'yawaw yaxwi',
+        'yaxwi yawaw undanam yaxwi',
+        'yawa'
+      ];
+      final _random = Random();
+      String element = mativatsiya[_random.nextInt(mativatsiya.length)];
+      return element;
+    }
+
     return Scaffold(
+      appBar: AppBar(
         backgroundColor: Colors.indigo,
-        appBar: AppBar(
-          backgroundColor: Colors.indigo,
-          elevation: 0,
-          // leading: IconButton(
-          //   onPressed: (){
-          //     Scaffold.of(context).
-          //   },
-          //   icon: Icon(
-          //     Icons.menu,
-          //     color: Colors.white,
-          //   ),
-          // ),
-        ),
-        body: Column(
+        elevation: 0,
+      ),
+      backgroundColor: Colors.indigo,
+      body: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.fromLTRB(12, 0, 0, 0),
-              child: Text(
-                "Java Script",
-                style: TextStyle(color: Colors.white, fontSize: 20.0),
-              ),
+            const Text(
+              'JavaScript',
+              style: TextStyle(color: Colors.white, fontSize: 24.0),
             ),
             const SizedBox(
-              height: 48.0,
+              height: 48,
             ),
             CarouselSlider(
-              options: CarouselOptions(
-                height: 300.0,
-                enlargeCenterPage: true,
-              ),
               items: data.map((i) {
                 return Builder(
                   builder: (BuildContext context) {
@@ -50,9 +54,41 @@ class Home extends StatelessWidget {
                   },
                 );
               }).toList(),
+              options: CarouselOptions(
+                height: 300.0,
+                enlargeCenterPage: true,
+              ),
             ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 40.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        motivation();
+                      });
+                    },
+                    child: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text(
+                          motivation(),
+                          style: const TextStyle(
+                              fontSize: 22.0, fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
-        drawer: const MyDrawer());
+      ),
+      drawer: const MyDrawer(),
+    );
   }
 }

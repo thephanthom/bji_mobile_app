@@ -1,7 +1,8 @@
-import 'package:bji/utils/topic.dart';
+// ignore_for_file: must_be_immutable
+
+import 'package:bli/utils/topic.dart';
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
 class MyCard extends StatelessWidget {
   MyCard(this.topic, {Key? key}) : super(key: key);
 
@@ -12,16 +13,16 @@ class MyCard extends StatelessWidget {
     return Card(
       clipBehavior: Clip.hardEdge,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0),
+        borderRadius: BorderRadius.circular(20),
       ),
-      elevation: 8.0,
-      color: Colors.white,
+      elevation: 8,
+      color: Colors.indigo,
       child: InkWell(
         onTap: () {
-          Navigator.pushNamed(context, '/details', arguments: topic);
+          Navigator.pushNamed(context, '/detail', arguments: topic);
         },
         child: Stack(
-          alignment: AlignmentDirectional.center,
+          alignment: AlignmentDirectional.bottomCenter,
           fit: StackFit.expand,
           children: [
             Hero(
@@ -32,12 +33,12 @@ class MyCard extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 60.0,
+              top: 60,
               child: Text(
                 topic.title,
-                style: TextStyle(
-                    fontSize: 48.0,
-                    color: Colors.indigoAccent[700],
+                style: const TextStyle(
+                    fontSize: 48,
+                    color: Colors.white,
                     fontWeight: FontWeight.w700),
               ),
             ),
